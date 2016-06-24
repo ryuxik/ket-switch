@@ -1,5 +1,19 @@
 """
-THIS WILL WORK
+This is the epic project that was undertaken by two derps in June of 2016.
+:3
 """
-#maybe
-#well i think i got this to work in the master but i must figure out how to update to branch to not mess up everything evrytaim
+
+class sampleClass:
+	"""
+	Just put this here as an example. lel
+	"""
+
+	def __init__(self):
+		pass
+
+def main():
+	"""
+	Main method
+	"""
+
+if __name__ == "__main__": main()

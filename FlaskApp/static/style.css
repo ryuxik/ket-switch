@@ -2,12 +2,14 @@ h1 {
 	color:blue;
 	font-family: Verdana;
 }
+
 body {
     background: white;
     color: black;
     font-family: Trajan;
     font-size: 2em;
 }
+
 span {
 	background: pink;
 	color: violet;

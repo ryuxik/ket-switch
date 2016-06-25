@@ -13,11 +13,11 @@ def index():
 
 @app.route('/376')
 def Annie():
-	return 'ʕ•ᴥ•ʔ'
+	return render_template('annie.html')
 
 @app.route('/673')
 def Smol():
-	return 'Smol'
+	return render_template('santiago.html')
 
 @app.route('/Stranger')
 def Stranger():

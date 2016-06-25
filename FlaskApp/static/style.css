@@ -1,4 +1,11 @@
 body {
     background: white;
     color: black;
+    font-family: Trajan;
+    font-size: 2em;
+}
+span {
+	background: pink;
+	color: violet;
+	font-size: 0.5em;
 }

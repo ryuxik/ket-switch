@@ -3,6 +3,8 @@ h1 {
 	font-family: Segoe UI Semibold;
 	font-size: 3rem;
 	text-align: center;
+	border-radius: 1px solid #2E0854;
+	background-color: #683A5E;
 }
 h2{
 	font-size: 2rem;

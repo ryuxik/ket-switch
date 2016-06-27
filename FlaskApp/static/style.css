@@ -1,19 +1,20 @@
 h1 {
 	color:#f7deee;
 	font-family: Segoe UI Semibold;
+	font-size: 3rem;
 }
 h2{
-	font-size: 1rem;
+	font-size: 2rem;
 }
 
 body {
     background: white;
     color: #c5b1be;
-    font-family: Avant Garde;
+    font-family: Helvetica;
 }
 
 span {
 	color: #94858e;
-	font-size: 0.75rem;
+	font-size: 1rem;
 }
 

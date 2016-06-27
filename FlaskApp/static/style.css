@@ -1,17 +1,19 @@
 h1 {
-	color:blue;
-	font-family: Verdana;
+	color:#f7deee;
+	font-family: Segoe UI Semibold;
+}
+h2{
+	font-size: 1rem;
 }
 
 body {
     background: white;
-    color: black;
-    font-family: Trajan;
-    font-size: 2em;
+    color: #c5b1be;
+    font-family: Arial;
 }
 
 span {
-	background: pink;
-	color: violet;
-	font-size: 0.5em;
+	color: #94858e;
+	font-size: 0.75rem;
 }
+

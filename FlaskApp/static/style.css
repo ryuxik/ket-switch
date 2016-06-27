@@ -2,11 +2,18 @@ h1 {
 	color:#f7deee;
 	font-family: Segoe UI Semibold;
 	font-size: 3rem;
+	text-align: center;
 }
 h2{
 	font-size: 2rem;
+	text-align: center;
 }
-
+h3 {
+	text-align: center
+}
+h4{
+	text-align: center
+}
 body {
     background: white;
     color: #c5b1be;
@@ -16,5 +23,11 @@ body {
 span {
 	color: #94858e;
 	font-size: 1rem;
+}
+a {
+	color: #BF5FFF;
+	font-size: 1.2rem;
+	font-family: Helvetica;
+	text-decoration: none;
 }
 

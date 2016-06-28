@@ -85,3 +85,6 @@ p {
 	margin-left: 20px;
 	font-family: High Tower Text;
 }
+span > p {
+	text-align: center;
+}

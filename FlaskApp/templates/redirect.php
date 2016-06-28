@@ -1,11 +1,11 @@
-<?
-switch($_GET['name'])
+<?php
+switch($_GET['mytext'])
 {
-    case 'Annie':
-        header('Location: http://localhost:5000/376');
+    case 'Derp':
+        header('Location: http://localhost:5000/Annie');
         break;
     case 'Smol':
-        header('Location: http://localhost:5000/673');
+        header('Location: http://localhost:5000/Santiago');
         break;
     default:
         print "<p>Wrong code. Try again</p>";

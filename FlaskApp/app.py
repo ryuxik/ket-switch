@@ -11,17 +11,17 @@ app = Flask(__name__)
 def index():
 	return render_template('page.html')
 
-@app.route('/376')
+@app.route('/Annie')
 def Annie():
 	return render_template('annie.html')
 
-@app.route('/673')
+@app.route('/Santiago')
 def Smol():
 	return render_template('santiago.html')
 
 @app.route('/Stranger')
 def Stranger():
-	return 'Hello stranger'
+	return render_template('stranger.html')
 
 """
 This is the skeleton for the things, putting your name is kinda like a login

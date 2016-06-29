@@ -77,8 +77,27 @@ a {
 	text-decoration: none;
 }
 
-form {
-	margin-left: 40px;
+form > p {
+	text-align: center;
+	font-size: 2rem;
+}
+
+/* I can't get this stupid button to the center...gahhhh*/
+.btn {
+	border: 0 none;
+	font-family: Helvetica;
+	font-size: 2rem;
+	color: #c5b1be;
+	background: #683A5E;
+	border-radius: 0;
+	height:40px;
+	width:160px;
+	float:bottom;
+}
+
+.btn:hover {
+	background: #94858e;
+	color: white;
 }
 
 p {

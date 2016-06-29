@@ -3,11 +3,11 @@ This is the web app to connect to the internet and controll the light switch
 For now, to see it, type http://localhost:5000/ into browser
 """
 
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/home')
 def index():
 	return render_template('page.html')
 
@@ -35,6 +35,22 @@ def hello_user(name):
 		return redirect(url_for('Smol'))
 	else:
 		return redirect(url_for('Stranger'))
+
+"""
+trial login stuff
+need to learn angular so that if user not logged in it redirects to this :3
+"""
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    error = redirect(url_for('Stranger'))
+    if request.method == 'POST':
+        if request.form['username'] == 'Derp' and request.form['password'] == 'Derp':
+        	return redirect(url_for('index'))
+        elif request.form['username'] == 'Smol' and request.form['password'] == 'Smol':
+        	return redirect(url_for('index'))
+        else:
+            return error
+    return render_template('login.html')
 
 
 

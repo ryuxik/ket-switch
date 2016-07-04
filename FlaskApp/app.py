@@ -18,6 +18,9 @@ frequency = 50
 neutralDc = frequency*.15
 topDc = frequency * .25
 botDc = frequency * .05
+#set your pwm pin here pls
+derpPin = 7
+smolPin = 7
 
 def readyBoard(pin, frequency):
 	#sets pins to be referenced by number on the r pi
@@ -100,22 +103,39 @@ def home():
 def Annie():
 	return render_template('annie.html')
 
-@app.route('/lightsON')
-def lightsON():
-	readyBoard(7,frequency)
-	set180(7)
-	setNeutral(7)
-	stopPin(7)
+@app.route('/lightsONderp')
+def lightsONderp():
+	readyBoard(derpPin,frequency)
+	set180(derpPin)
+	setNeutral(derpPin)
+	stopPin(derpPin)
 	GPIO.cleanup()
 	return rendirect(url_for('annie'))
 
-@app.route('/lightsOFF')
+@app.route('/lightsOFFderp')
 def lightsOFF():
-	readyBoard(7,frequency)
-	set0(7)
-	stopPin(7)
+	readyBoard(derpPin,frequency)
+	set0(derpPin)
+	stopPin(derpPin)
 	GPIO.cleanup()
 	return redirect(url_for('annie'))
+
+@app.route('/lightsONsmol')
+def lightsONderp():
+	readyBoard(smolPin,frequency)
+	set180(smolPin)
+	setNeutral(smolPin)
+	stopPin(smolPin)
+	GPIO.cleanup()
+	return rendirect(url_for('santiago'))
+
+@app.route('/lightsOFFsmol')
+def lightsOFF():
+	readyBoard(smolPin,frequency)
+	set0(smolPin)
+	stopPin(smolPin)
+	GPIO.cleanup()
+	return redirect(url_for('santiago'))
 
 @app.route('/Santiago')
 def Smol():

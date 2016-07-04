@@ -82,28 +82,29 @@ form > p {
 	font-size: 2rem;
 }
 
-/* I can't get this stupid button to the center...gahhhh*/
-.btn {
-	border: 0 none;
-	font-family: Helvetica;
-	font-size: 2rem;
-	color: #c5b1be;
-	background: #683A5E;
-	border-radius: 0;
-	height:40px;
-	width:160px;
-	float:bottom;
-}
 
-.btn:hover {
-	background: #94858e;
-	color: white;
-}
 
 p {
 	margin-left: 20px;
-	font-family: High Tower Text;
+	font-family: Comic Sans MS;
 }
 span > p {
 	text-align: center;
+}
+
+.textbox {
+    height: 100px; 
+    width: 500px; 
+    background-color: transparent;
+    font-size: 2rem;
+    color:#f7deee;
+    text-align: center;  
+    border-style: solid;  
+    border-width: 0px 0px 1px 0px;  
+    border-color: #683A5E; 
+    outline:0; 
+}
+
+::-webkit-input-placeholder { 
+    color: #e3e3e3;
 }

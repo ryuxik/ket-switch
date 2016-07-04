@@ -3,7 +3,8 @@ This is the web app to connect to the internet and controll the light switch
 For now, to see it, type http://localhost:5000/ into browser
 """
 # have to pip install both flask and Flask-HTTPAuth
-
+import RPi.GPIO as GPIO
+import time
 from flask import Flask, render_template, redirect, url_for, request, g
 from functools import wraps
 from flask_login import (LoginManager, current_user, login_required,
@@ -11,6 +12,35 @@ from flask_login import (LoginManager, current_user, login_required,
                             confirm_login, fresh_login_required)
 
 app = Flask(__name__)
+
+""" pin control sutff """
+frequency = 50
+neutralDc = frequency*.15
+topDc = frequency * .25
+botDc = frequency * .05
+
+def readyBoard(pin, frequency):
+	#sets pins to be referenced by number on the r pi
+	GPIO.setmode(GPIO.BOARD)
+	#set pin as an output pin 
+	GPIO.setup(pin,GPIO.OUT)
+	#sets pin as a pwm modulated pin at a frequency
+	chosenPin = GPIO.PWM(pin, frequency)
+	#returns pin
+	return chosenPin
+
+#sets pin to set to neutral position
+def setNeutral(pin):
+	pin.start(neutralDc)
+#sets pin to set to 180 position
+def set180(pin):
+	pin.start(topDc)
+#sets pin to set to 0 position
+def set0(pin):
+	pin.start(botDc)
+#stops pwm 
+def stopPin(pin):
+	pin.stop()
 
 """other login stuff"""
 class Anonymous(AnonymousUserMixin):
@@ -69,6 +99,23 @@ def home():
 @app.route('/Annie')
 def Annie():
 	return render_template('annie.html')
+
+@app.route('/lightsON')
+def lightsON():
+	readyBoard(7,frequency)
+	set180(7)
+	setNeutral(7)
+	stopPin(7)
+	GPIO.cleanup()
+	return rendirect(url_for('annie'))
+
+@app.route('/lightsOFF')
+def lightsOFF():
+	readyBoard(7,frequency)
+	set0(7)
+	stopPin(7)
+	GPIO.cleanup()
+	return redirect(url_for('annie'))
 
 @app.route('/Santiago')
 def Smol():

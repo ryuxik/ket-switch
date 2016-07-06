@@ -37,11 +37,11 @@ def setNeutral(pin):
 	pin.ChangeDutyCycle(neutralDc)
 #sets pin to set to 180 position
 def set180(pin):
-        pin.start(neutralDc)
+    pin.start(neutralDc)
 	pin.ChangeDutyCycle(topDc)
 #sets pin to set to 0 position
 def set0(pin):
-        pin.start(neutralDc)
+    pin.start(neutralDc)
 	pin.ChangeDutyCycle(botDc)
 #stops pwm 
 def stopPin(pin):

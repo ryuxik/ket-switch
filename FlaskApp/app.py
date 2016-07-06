@@ -34,13 +34,15 @@ def readyBoard(pin, frequency):
 
 #sets pin to set to neutral position
 def setNeutral(pin):
-	pin.start(neutralDc)
+	pin.ChangeDutyCycle(neutralDc)
 #sets pin to set to 180 position
 def set180(pin):
-	pin.start(topDc)
+        pin.start(neutralDc)
+	pin.ChangeDutyCycle(topDc)
 #sets pin to set to 0 position
 def set0(pin):
-	pin.start(botDc)
+        pin.start(neutralDc)
+	pin.ChangeDutyCycle(botDc)
 #stops pwm 
 def stopPin(pin):
 	pin.stop()
@@ -105,37 +107,41 @@ def Annie():
 
 @app.route('/lightsONderp')
 def lightsONderp():
-	readyBoard(derpPin,frequency)
-	set180(derpPin)
-	setNeutral(derpPin)
-	stopPin(derpPin)
+	pin = readyBoard(derpPin,frequency)
+	set180(pin)
+	time.sleep(1)
+	setNeutral(pin)
+	stopPin(pin)
 	GPIO.cleanup()
-	return rendirect(url_for('annie'))
+	return redirect(url_for('Annie'))
 
 @app.route('/lightsOFFderp')
-def lightsOFF():
-	readyBoard(derpPin,frequency)
-	set0(derpPin)
-	stopPin(derpPin)
+def lightsOFFderp():
+	pin = readyBoard(derpPin,frequency)
+	set0(pin)
+	time.sleep(1)
+	stopPin(pin)
 	GPIO.cleanup()
-	return redirect(url_for('annie'))
+	return redirect(url_for('Annie'))
 
 @app.route('/lightsONsmol')
-def lightsONderp():
-	readyBoard(smolPin,frequency)
-	set180(smolPin)
-	setNeutral(smolPin)
-	stopPin(smolPin)
+def lightsONsmol():
+	pin = readyBoard(smolPin,frequency)
+	set180(pin)
+	time.sleep(1)
+	setNeutral(pin)
+	stopPin(pin)
 	GPIO.cleanup()
-	return rendirect(url_for('santiago'))
+	return redirect(url_for('Smol'))
 
 @app.route('/lightsOFFsmol')
-def lightsOFF():
-	readyBoard(smolPin,frequency)
-	set0(smolPin)
-	stopPin(smolPin)
+def lightsOFFsmol():
+	pin = readyBoard(smolPin,frequency)
+	set0(pin)
+	time.sleep(1)
+	stopPin(pin)
 	GPIO.cleanup()
-	return redirect(url_for('santiago'))
+	return redirect(url_for('Smol'))
 
 @app.route('/Santiago')
 def Smol():

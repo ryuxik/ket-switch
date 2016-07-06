@@ -3,8 +3,8 @@ This is the web app to connect to the internet and controll the light switch
 For now, to see it, type http://localhost:5000/ into browser
 """
 # have to pip install both flask and Flask-HTTPAuth
-import RPi.GPIO as GPIO
-import time
+# import RPi.GPIO as GPIO
+# import time
 from flask import Flask, render_template, redirect, url_for, request, g
 from functools import wraps
 from flask_login import (LoginManager, current_user, login_required,
@@ -22,30 +22,30 @@ botDc = frequency * .05
 derpPin = 7
 smolPin = 7
 
-def readyBoard(pin, frequency):
-	#sets pins to be referenced by number on the r pi
-	GPIO.setmode(GPIO.BOARD)
-	#set pin as an output pin 
-	GPIO.setup(pin,GPIO.OUT)
-	#sets pin as a pwm modulated pin at a frequency
-	chosenPin = GPIO.PWM(pin, frequency)
-	#returns pin
-	return chosenPin
+# def readyBoard(pin, frequency):
+# 	#sets pins to be referenced by number on the r pi
+# 	GPIO.setmode(GPIO.BOARD)
+# 	#set pin as an output pin 
+# 	GPIO.setup(pin,GPIO.OUT)
+# 	#sets pin as a pwm modulated pin at a frequency
+# 	chosenPin = GPIO.PWM(pin, frequency)
+# 	#returns pin
+# 	return chosenPin
 
-#sets pin to set to neutral position
-def setNeutral(pin):
-	pin.ChangeDutyCycle(neutralDc)
-#sets pin to set to 180 position
-def set180(pin):
-    pin.start(neutralDc)
-	pin.ChangeDutyCycle(topDc)
-#sets pin to set to 0 position
-def set0(pin):
-    pin.start(neutralDc)
-	pin.ChangeDutyCycle(botDc)
-#stops pwm 
-def stopPin(pin):
-	pin.stop()
+# #sets pin to set to neutral position
+# def setNeutral(pin):
+# 	pin.ChangeDutyCycle(neutralDc)
+# #sets pin to set to 180 position
+# def set180(pin):
+#     pin.start(neutralDc)
+# 	pin.ChangeDutyCycle(topDc)
+# #sets pin to set to 0 position
+# def set0(pin):
+#     pin.start(neutralDc)
+# 	pin.ChangeDutyCycle(botDc)
+# #stops pwm 
+# def stopPin(pin):
+# 	pin.stop()
 
 """other login stuff"""
 class Anonymous(AnonymousUserMixin):
@@ -105,43 +105,43 @@ def home():
 def Annie():
 	return render_template('annie.html')
 
-@app.route('/lightsONderp')
-def lightsONderp():
-	pin = readyBoard(derpPin,frequency)
-	set180(pin)
-	time.sleep(1)
-	setNeutral(pin)
-	stopPin(pin)
-	GPIO.cleanup()
-	return redirect(url_for('Annie'))
+# @app.route('/lightsONderp')
+# def lightsONderp():
+# 	pin = readyBoard(derpPin,frequency)
+# 	set180(pin)
+# 	time.sleep(1)
+# 	setNeutral(pin)
+# 	stopPin(pin)
+# 	GPIO.cleanup()
+# 	return redirect(url_for('Annie'))
 
-@app.route('/lightsOFFderp')
-def lightsOFFderp():
-	pin = readyBoard(derpPin,frequency)
-	set0(pin)
-	time.sleep(1)
-	stopPin(pin)
-	GPIO.cleanup()
-	return redirect(url_for('Annie'))
+# @app.route('/lightsOFFderp')
+# def lightsOFFderp():
+# 	pin = readyBoard(derpPin,frequency)
+# 	set0(pin)
+# 	time.sleep(1)
+# 	stopPin(pin)
+# 	GPIO.cleanup()
+# 	return redirect(url_for('Annie'))
 
-@app.route('/lightsONsmol')
-def lightsONsmol():
-	pin = readyBoard(smolPin,frequency)
-	set180(pin)
-	time.sleep(1)
-	setNeutral(pin)
-	stopPin(pin)
-	GPIO.cleanup()
-	return redirect(url_for('Smol'))
+# @app.route('/lightsONsmol')
+# def lightsONsmol():
+# 	pin = readyBoard(smolPin,frequency)
+# 	set180(pin)
+# 	time.sleep(1)
+# 	setNeutral(pin)
+# 	stopPin(pin)
+# 	GPIO.cleanup()
+# 	return redirect(url_for('Smol'))
 
-@app.route('/lightsOFFsmol')
-def lightsOFFsmol():
-	pin = readyBoard(smolPin,frequency)
-	set0(pin)
-	time.sleep(1)
-	stopPin(pin)
-	GPIO.cleanup()
-	return redirect(url_for('Smol'))
+# @app.route('/lightsOFFsmol')
+# def lightsOFFsmol():
+# 	pin = readyBoard(smolPin,frequency)
+# 	set0(pin)
+# 	time.sleep(1)
+# 	stopPin(pin)
+# 	GPIO.cleanup()
+# 	return redirect(url_for('Smol'))
 
 @app.route('/Santiago')
 def Smol():

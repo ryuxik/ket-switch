@@ -92,6 +92,25 @@ span > p {
 	text-align: center;
 }
 
+input {
+	background-color: transparent;
+	height: 50px;
+	width: 250px;
+	font-size: 2rem;
+	color: #f7deee;
+	text-align: center;
+	outline: 0;
+	border-color: transparent;
+	font-family: High Tower Text;
+}
+
+input:hover {
+	background-color: #ECC8EC
+
+}
+
+div {text-align: center;}
+
 .textbox {
     height: 100px; 
     width: 500px; 

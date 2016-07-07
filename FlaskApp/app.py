@@ -52,8 +52,9 @@ class Anonymous(AnonymousUserMixin):
 	name = u"Anonymous"
 
 class User(UserMixin):
-	def __init__(self, name, id, active = True):
+	def __init__(self, name, passw, id, active = True):
 		self.name = name
+		self.passw = passw
 		self.id = id
 		self.active = active
 
@@ -68,12 +69,13 @@ class User(UserMixin):
 		return True
 
 USERS = {
-	1: User(u"Derp", 1),
-	2: User(u"Smol", 2),
-	3: User(u"Stranger", 3, False),
+	1: User(u"Derp",u"Derp", 1),
+	2: User(u"Smol",u"Smol", 2),
+	3: User(u"Stranger",u"Stranger", 3, False),
 }
 
 USER_NAMES = dict((u.name, u) for u in USERS.values())
+USER_PASSW = dict((u.passw, u) for u in USERS.values())
 
 SECRET_KEY = "huhh"
 DEBUG = True
@@ -98,10 +100,12 @@ def index():
 	return redirect(url_for('login'))
 
 @app.route('/home')
+@login_required
 def home():
 	return render_template('page.html')
 
 @app.route('/Annie')
+@login_required
 def Annie():
 	return render_template('annie.html')
 
@@ -144,6 +148,7 @@ def Annie():
 # 	return redirect(url_for('Smol'))
 
 @app.route('/Santiago')
+@login_required
 def Smol():
 	return render_template('santiago.html')
 
@@ -156,6 +161,7 @@ This is the skeleton for the things, putting your name is kinda like a login
 to access use http://localhost:5000/name/ (whichever you want here)
 """
 @app.route('/name/<name>')
+@login_required
 def hello_user(name):
 	if name == 'Annie':
 		return redirect(url_for('Annie'))
@@ -173,17 +179,20 @@ I'm trying to use a dictionary for now as a database of users
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == "POST" and "username" in request.form:
+    if request.method == "POST" and "username" in request.form and "password" in request.form:
     	username = request.form["username"]
-    	if username in USER_NAMES:
+    	passw = request.form["password"]
+    	if username in USER_NAMES and passw in USER_PASSW:
     		remember = request.form.get("remember","no") == "yes"
     		if login_user(USER_NAMES[username], remember=remember):
+    			confirm_login()
     			return redirect(url_for("home"))
     		else:
     			return redirect(url_for('Stranger'))
     return render_template("login.html")
 
 #need to add reauth.html
+#idk if we even need this :3
 @app.route("/reauth", methods=["GET", "POST"])
 @login_required
 def reauth():
@@ -207,10 +216,9 @@ def login_required(f):
 		return f(*args, **kwargs)
 	return decorated_function
 
-@app.route('/testing_page')
-@login_required
-def testing_page():
-	return ("hey i know you..")
+@login_manager.unauthorized_handler
+def unauthorized():
+	return redirect(url_for('login'))
 
 if __name__ == '__main__':
 	app.run(debug=True, host ='0.0.0.0')
